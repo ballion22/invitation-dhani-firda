@@ -831,6 +831,14 @@
   autoStartEvents.forEach(function(evt){
     document.addEventListener(evt, autoStartOnce, { once: true, passive: true });
   });
+  
+  // Stop music when the tab is hidden, switched away from, or the page is closed
+  document.addEventListener('visibilitychange', function(){
+    if(document.hidden){
+      stopMusic();
+    }
+  });
+  window.addEventListener('pagehide', stopMusic);
 </script>
 
 </body>
