@@ -832,10 +832,13 @@
     document.addEventListener(evt, autoStartOnce, { once: true, passive: true });
   });
   
-  // Stop music when the tab is hidden, switched away from, or the page is closed
+  // Stop music when the tab is hidden, switched away from, or the page is closed.
+  // When the tab becomes visible again, re-arm auto-start so the next scroll/tap resumes music.
   document.addEventListener('visibilitychange', function(){
     if(document.hidden){
       stopMusic();
+    } else {
+      armAutoStart();
     }
   });
   window.addEventListener('pagehide', stopMusic);
