@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dhani & Firda</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Beth+Ellen&family=Gaegu:wght@700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Momo+Signature&family=Gaegu:wght@700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
 <style>
   :root{
     --ivory:#FAF6EE;
@@ -21,17 +21,14 @@
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
   body{
-    background: url('assets/dresscode-bg.jpg');
-    background-repeat: repeat;
-    background-size: 900px;
-    background-attachment: fixed;
+    background: var(--ivory);
     color:var(--ink);
     font-family:'DM Sans', sans-serif;
     font-weight:500;
     font-style: normal;
     overflow-x:hidden;
   }
-  .serif{ font-family:'Beth Ellen', cursive; }
+  .serif{ font-family:'Momo Signature', cursive; }
   .eyebrow{
     font-family:'DM Sans', sans-serif;
     font-size:12px;
@@ -47,6 +44,9 @@
     margin:32px auto;
     text-align:center;
     border:1px solid var(--gold-pale);
+    background-image: url('assets/dresscode-bg.jpg');
+    background-repeat: repeat;
+    background-size: 700px;
   }
   .divider .stem{ width:56px; height:1px; background:var(--line); }
   .divider .dot{ width:5px; height:5px; border-radius:50%; background:var(--gold); }
@@ -100,7 +100,7 @@
   #ayat{ padding-top:72px; }
   .ayat-text{
     font-family:'Libre Baskerville', serif;
-    font-size:clamp(13px,2.0vw,24px);
+    font-size:clamp(19px,3.4vw,24px);
     line-height:1.75;
     font-style:normal;
     color:var(--ink);
@@ -135,7 +135,7 @@
     line-height:1.6;
   }
   .couple-divider{
-    font-family:'Beth Ellen', cursive;
+    font-family:'Momo Signature', cursive;
     font-style:italic;
     font-size:26px;
     color:var(--gold-deep);
@@ -150,7 +150,7 @@
     margin-bottom:8px;
   }
   .date-badge .date-day{
-    font-family:'Beth Ellen', cursive;
+    font-family:'Momo Signature', cursive;
     font-size:clamp(30px,6vw,42px);
     color:var(--gold-deep);
     margin-bottom:14px;
@@ -226,6 +226,22 @@
     font-size:16px;
     color:var(--ink);
   }
+  .date-card-venue{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    margin-top:40px;
+    font-family:'Libre Baskerville', serif;
+    font-size:19px;
+    font-weight:700;
+    letter-spacing:.03em;
+    color:var(--ink);
+  }
+  .date-card-venue svg{
+    color:var(--ink);
+    flex-shrink:0;
+  }
   .event-card{
     border:1px solid var(--line);
     padding:40px 28px;
@@ -264,12 +280,12 @@
   .countdown-grid{
     display:flex;
     justify-content:center;
-    gap:clamp(12px,4vw,28px);
+    gap:clamp(6px,2.5vw,28px);
     margin-top:36px;
     flex-wrap:wrap;
   }
   .cd-box{
-    min-width:76px;
+    min-width:56px;
   }
   .cd-num{
     font-family:'Gaegu', sans-serif;
@@ -423,8 +439,8 @@
   }
   .signoff{
     margin-top:32px;
-    font-family:'Beth Ellen', cursive;
-    font-size:20px;
+    font-family:'Momo Signature', cursive;
+    font-size:30px;
     font-style:italic;
     color:var(--gold-deep);
   }
@@ -438,7 +454,7 @@
   }
 
   h2.section-title{
-    font-family:'Beth Ellen', cursive;
+    font-family:'Momo Signature', cursive;
     font-size:clamp(26px,5vw,34px);
     font-weight:600;
     margin-top:8px;
@@ -514,7 +530,7 @@
     <div class="date-card-date">04 . 10 . 26</div>
     <div class="date-card-events">
       <div class="date-card-event">
-        <div class="event-name">Akad Nikah</div>
+        <div class="event-name">Akad<br>Nikah</div>
         <div class="event-time">07.00 &ndash; 09.30 WIB</div>
       </div>
       <div class="date-card-divider"></div>
@@ -523,13 +539,20 @@
         <div class="event-time">09.30 &ndash; 11.30 WIB</div>
       </div>
     </div>
+    <div class="date-card-venue">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 22 C12 22 19 14.8 19 9.5 C19 5.36 15.64 2 12 2 C8.36 2 5 5.36 5 9.5 C5 14.8 12 22 12 22 Z" stroke="currentColor" stroke-width="1.6" fill="none"/>
+        <circle cx="12" cy="9.5" r="2.6" stroke="currentColor" stroke-width="1.6" fill="none"/>
+      </svg>
+      <span>Taman Indie</span>
+    </div>
   </div>
 </section>
 
 <!-- LOKASI -->
 <section id="lokasi">
   <div class="eyebrow">Lokasi Acara</div>
-  <h2 class="section-title serif">Taman Indie</h2>
+  <h2 class="section-title serif">Taman Indie Resto</h2>
   <div class="venue-block">
     Jalan Araya Megah No. 9, Pandanwangi,<br>
     Kecamatan Blimbing, Kota Malang
@@ -602,7 +625,7 @@
 
     <div class="field">
       <label for="catatan">Catatan (opsional)</label>
-      <textarea id="catatan" name="catatan" placeholder="Saya datang bersama keluarga"></textarea>
+      <textarea id="catatan" name="catatan" placeholder="Notes atau ucapan yang ingin disampaikan"></textarea>
     </div>
 
     <button type="submit" class="submit-btn">Kirim Konfirmasi</button>
@@ -628,14 +651,16 @@
     </g>
   </svg>
 
-  <h2 class="section-title serif">Terima Kasih</h2>
+  <div class="eyebrow">Terima Kasih</div>
   <br>
   <p class="penutup-text">
     Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i
     berkenan hadir dan memberikan doa restu bagi kedua mempelai.<br><br>
     Atas kehadiran dan doa restunya, kami mengucapkan terima kasih.
   </p>
-    <svg class="penutup-floral" viewBox="0 0 200 70" width="180" height="63" xmlns="http://www.w3.org/2000/svg" style="margin:24px auto 0; display:block; transform:scaleY(-1);">
+  <div class="signoff">Dhani &amp; Firda</div>
+
+  <svg class="penutup-floral" viewBox="0 0 200 70" width="180" height="63" xmlns="http://www.w3.org/2000/svg" style="margin:24px auto 0; display:block; transform:scaleY(-1);">
     <g fill="none" stroke="var(--gold-deep)" stroke-width="1.1" stroke-linecap="round">
       <path d="M100 60 C100 40 85 30 60 26 C40 23 25 28 14 18"/>
       <path d="M100 60 C100 40 115 30 140 26 C160 23 175 28 186 18"/>
@@ -647,7 +672,6 @@
       <path d="M100 58 C94 50 90 44 92 36 C94 30 100 28 100 28 C100 28 106 30 108 36 C110 44 106 50 100 58 Z"/>
     </g>
   </svg>
-  <div class="signoff">Dhani &amp; Firda</div>
 </section>
 
 <footer>SAVE THE DATE &nbsp;-----------------&nbsp; 04.10.2026</footer>
@@ -685,11 +709,37 @@
   fadeSections.forEach(function(sec){ fadeObserver.observe(sec); });
 
   // RSVP form (client-side only — no data is stored or sent anywhere)
+  // RSVP form — submits to a Google Sheet via Google Apps Script Web App.
+  // 1. Follow the setup steps provided separately to create your Sheet + Apps Script.
+  // 2. Paste the Web App URL you get after deploying into SCRIPT_URL below.
+  var SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxLZtteS5ytKHBqEJPGWdFsQp79wm4yqX7vo2P0_cnakDC41QE77BhYuAYcjtPYiDJRtw/exec";
+
   document.getElementById('rsvpForm').addEventListener('submit', function(e){
     e.preventDefault();
-    document.getElementById('rsvpConfirm').style.display = 'block';
-    this.reset();
-    document.getElementById('rsvpConfirm').scrollIntoView({behavior:'smooth', block:'center'});
+    var form = this;
+    var formData = new FormData(form);
+
+    if(SCRIPT_URL.indexOf('PASTE_YOUR') !== -1){
+      // Script URL not configured yet — just show the confirmation locally.
+      document.getElementById('rsvpConfirm').style.display = 'block';
+      form.reset();
+      document.getElementById('rsvpConfirm').scrollIntoView({behavior:'smooth', block:'center'});
+      return;
+    }
+
+    fetch(SCRIPT_URL, {
+      method: 'POST',
+      body: formData,
+      mode: 'no-cors'
+    }).then(function(){
+      document.getElementById('rsvpConfirm').style.display = 'block';
+      form.reset();
+      document.getElementById('rsvpConfirm').scrollIntoView({behavior:'smooth', block:'center'});
+    }).catch(function(){
+      document.getElementById('rsvpConfirm').style.display = 'block';
+      form.reset();
+      document.getElementById('rsvpConfirm').scrollIntoView({behavior:'smooth', block:'center'});
+    });
   });
 </script>
 
