@@ -100,7 +100,7 @@
   #ayat{ padding-top:72px; }
   .ayat-text{
     font-family:'Libre Baskerville', serif;
-    font-size:clamp(19px,3.4vw,24px);
+    font-size:13px;
     line-height:1.75;
     font-style:normal;
     color:var(--ink);
@@ -175,10 +175,11 @@
   }
   .date-card{
     margin-top:48px;
-    background:var(--gold);
+    background:var(--ivory);
     color:var(--ink);
     padding:56px 32px;
     border:1px solid var(--gold-pale);
+    border-radius:20px;
   }
   .date-card-heading{
     font-family:'DM Sans', sans-serif;
@@ -288,7 +289,7 @@
     min-width:56px;
   }
   .cd-num{
-    font-family:'Gaegu', sans-serif;
+    font-family:'Libre Baskerville', serif;
     font-size:clamp(34px,7vw,52px);
     font-weight:600;
     color:var(--gold-deep);
@@ -356,6 +357,15 @@
 
   /* ---------- rsvp ---------- */
   #rsvp{ padding-top:72px; }
+  .rsvp-note{
+    margin-top:14px;
+    font-size:13px;
+    line-height:1.7;
+    color:var(--ink-soft);
+    max-width:420px;
+    margin-left:auto;
+    margin-right:auto;
+  }
   form{
     margin-top:36px;
     text-align:left;
@@ -440,7 +450,7 @@
   .signoff{
     margin-top:32px;
     font-family:'Momo Signature', cursive;
-    font-size:30px;
+    font-size:13px;
     font-style:italic;
     color:var(--gold-deep);
   }
@@ -530,7 +540,7 @@
     <div class="date-card-date">04 . 10 . 26</div>
     <div class="date-card-events">
       <div class="date-card-event">
-        <div class="event-name">Akad<br>Nikah</div>
+        <div class="event-name">Akad Nikah</div>
         <div class="event-time">07.00 &ndash; 09.30 WIB</div>
       </div>
       <div class="date-card-divider"></div>
@@ -552,7 +562,7 @@
 <!-- LOKASI -->
 <section id="lokasi">
   <div class="eyebrow">Lokasi Acara</div>
-  <h2 class="section-title serif">Taman Indie Resto</h2>
+  <h2 class="section-title serif">Taman Indie</h2>
   <div class="venue-block">
     Jalan Araya Megah No. 9, Pandanwangi,<br>
     Kecamatan Blimbing, Kota Malang
@@ -602,6 +612,9 @@
 <section id="rsvp">
   <div class="eyebrow">Konfirmasi Kehadiran</div>
   <h2 class="section-title serif">RSVP</h2>
+  <div class="rsvp-note">
+    Mohon konfirmasi kehadiran melalui RSVP paling lambat 27 September 2026 demi kelancaran persiapan acara. Terima kasih.
+  </div>
 
   <form id="rsvpForm">
     <div class="field">
@@ -625,7 +638,7 @@
 
     <div class="field">
       <label for="catatan">Catatan (opsional)</label>
-      <textarea id="catatan" name="catatan" placeholder="Notes atau ucapan yang ingin disampaikan"></textarea>
+      <textarea id="catatan" name="catatan" placeholder="Saya datang bersama keluarga"></textarea>
     </div>
 
     <button type="submit" class="submit-btn">Kirim Konfirmasi</button>
@@ -651,14 +664,13 @@
     </g>
   </svg>
 
-  <div class="eyebrow">Terima Kasih</div>
+  <h2 class="section-title serif">Terima Kasih</h2>
   <br>
   <p class="penutup-text">
     Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i
     berkenan hadir dan memberikan doa restu bagi kedua mempelai.<br><br>
     Atas kehadiran dan doa restunya, kami mengucapkan terima kasih.
   </p>
-  <div class="signoff">Dhani &amp; Firda</div>
 
   <svg class="penutup-floral" viewBox="0 0 200 70" width="180" height="63" xmlns="http://www.w3.org/2000/svg" style="margin:24px auto 0; display:block; transform:scaleY(-1);">
     <g fill="none" stroke="var(--gold-deep)" stroke-width="1.1" stroke-linecap="round">
@@ -672,7 +684,9 @@
       <path d="M100 58 C94 50 90 44 92 36 C94 30 100 28 100 28 C100 28 106 30 108 36 C110 44 106 50 100 58 Z"/>
     </g>
   </svg>
+  <div class="signoff">Dhani &amp; Firda</div>
 </section>
+
 
 <footer>SAVE THE DATE &nbsp;-----------------&nbsp; 04.10.2026</footer>
 
@@ -712,7 +726,7 @@
   // RSVP form — submits to a Google Sheet via Google Apps Script Web App.
   // 1. Follow the setup steps provided separately to create your Sheet + Apps Script.
   // 2. Paste the Web App URL you get after deploying into SCRIPT_URL below.
-  var SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxLZtteS5ytKHBqEJPGWdFsQp79wm4yqX7vo2P0_cnakDC41QE77BhYuAYcjtPYiDJRtw/exec";
+  var SCRIPT_URL = "PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE";
 
   document.getElementById('rsvpForm').addEventListener('submit', function(e){
     e.preventDefault();
