@@ -424,6 +424,10 @@
     transition:background .2s ease;
   }
   .submit-btn:hover{ background:var(--gold-deep); }
+  .submit-btn:disabled{
+    opacity:.65;
+    cursor:not-allowed;
+  }
   .rsvp-confirm{
     display:none;
     margin-top:24px;
@@ -591,10 +595,12 @@
 <div id="openingGate" class="opening-gate">
   <div class="opening-panel">
     <div class="eyebrow">The Wedding Of</div>
+    <br>
     <div class="couple-names serif" style="font-size:clamp(28px,7vw,44px);">
       Dhani<br><span class="amp">&amp;</span>Firda
     </div>
-    <div class="opening-label">Kepada Bapak/Ibu/Saudara/i</div>
+    <br>
+    <div class="opening-label">Kepada Bapak/Ibu/Saudara/i:</div>
     <div class="opening-guest-name serif" id="guestName">Tamu Undangan</div>
     <button id="openInvite" class="open-invite-btn">Buka Undangan</button>
   </div>
@@ -761,7 +767,7 @@
       <textarea id="catatan" name="catatan" placeholder="Notes atau ucapan yang ingin disampaikan"></textarea>
     </div>
 
-    <button type="submit" class="submit-btn">Kirim Konfirmasi</button>
+    <button type="submit" class="submit-btn" id="rsvpSubmitBtn">Kirim Konfirmasi</button>
   </form>
 
   <div class="rsvp-confirm" id="rsvpConfirm">
@@ -874,12 +880,25 @@
     e.preventDefault();
     var form = this;
     var formData = new FormData(form);
+    var submitBtn = document.getElementById('rsvpSubmitBtn');
 
-    if(SCRIPT_URL.indexOf('PASTE_YOUR') !== -1){
-      // Script URL not configured yet — just show the confirmation locally.
+    // Prevent double submission while a request is already in flight
+    if(submitBtn.disabled) return;
+    submitBtn.disabled = true;
+    var originalBtnText = submitBtn.textContent;
+    submitBtn.textContent = 'Mengirim...';
+
+    function finishSubmit(){
       document.getElementById('rsvpConfirm').style.display = 'block';
       form.reset();
       document.getElementById('rsvpConfirm').scrollIntoView({behavior:'smooth', block:'center'});
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalBtnText;
+    }
+
+    if(SCRIPT_URL.indexOf('PASTE_YOUR') !== -1){
+      // Script URL not configured yet — just show the confirmation locally.
+      finishSubmit();
       return;
     }
 
@@ -887,15 +906,7 @@
       method: 'POST',
       body: formData,
       mode: 'no-cors'
-    }).then(function(){
-      document.getElementById('rsvpConfirm').style.display = 'block';
-      form.reset();
-      document.getElementById('rsvpConfirm').scrollIntoView({behavior:'smooth', block:'center'});
-    }).catch(function(){
-      document.getElementById('rsvpConfirm').style.display = 'block';
-      form.reset();
-      document.getElementById('rsvpConfirm').scrollIntoView({behavior:'smooth', block:'center'});
-    });
+    }).then(finishSubmit).catch(finishSubmit);
   });
 
   // Background music toggle
