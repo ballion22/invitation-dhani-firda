@@ -591,11 +591,9 @@
 <div id="openingGate" class="opening-gate">
   <div class="opening-panel">
     <div class="eyebrow">The Wedding Of</div>
-    <br>
     <div class="couple-names serif" style="font-size:clamp(28px,7vw,44px);">
       Dhani<br><span class="amp">&amp;</span>Firda
     </div>
-    <br>
     <div class="opening-label">Kepada Bapak/Ibu/Saudara/i</div>
     <div class="opening-guest-name serif" id="guestName">Tamu Undangan</div>
     <button id="openInvite" class="open-invite-btn">Buka Undangan</button>
@@ -929,13 +927,29 @@
     if(isPlaying){ stopMusic(); } else { startMusic(); }
   });
 
-  // Stop music when the tab is hidden, switched away from, or the page is closed.
+  // Stop music when the tab is hidden, switched away from, or the page is closed —
+  // but remember whether it was playing, so we can resume automatically when the page returns.
+  var wasPlayingBeforeHide = false;
+
   document.addEventListener('visibilitychange', function(){
     if(document.hidden){
+      wasPlayingBeforeHide = isPlaying;
       stopMusic();
     }
   });
-  window.addEventListener('pagehide', stopMusic);
+
+  window.addEventListener('pagehide', function(){
+    wasPlayingBeforeHide = isPlaying;
+    stopMusic();
+  });
+
+  // When the page is shown again (reopened tab, back/forward navigation, restored from cache),
+  // resume music automatically if it was playing before.
+  window.addEventListener('pageshow', function(){
+    if(wasPlayingBeforeHide){
+      startMusic();
+    }
+  });
 </script>
 
 </body>
