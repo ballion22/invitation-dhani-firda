@@ -191,10 +191,11 @@
   }
   .date-card-date{
     font-family:'Libre Baskerville', serif;
-    font-size:clamp(40px,9vw,64px);
+    font-size:clamp(28px,9vw,64px);
     letter-spacing:.06em;
     margin-top:18px;
     color:var(--ink);
+    white-space:nowrap;
   }
   .date-card-events{
     display:flex;
@@ -595,12 +596,10 @@
 <div id="openingGate" class="opening-gate">
   <div class="opening-panel">
     <div class="eyebrow">The Wedding Of</div>
-    <br>
     <div class="couple-names serif" style="font-size:clamp(28px,7vw,44px);">
       Dhani<br><span class="amp">&amp;</span>Firda
     </div>
-    <br>
-    <div class="opening-label">Kepada Bapak/Ibu/Saudara/i:</div>
+    <div class="opening-label">Kepada Bapak/Ibu/Saudara/i</div>
     <div class="opening-guest-name serif" id="guestName">Tamu Undangan</div>
     <button id="openInvite" class="open-invite-btn">Buka Undangan</button>
   </div>
@@ -764,7 +763,7 @@
 
     <div class="field">
       <label for="catatan">Catatan (opsional)</label>
-      <textarea id="catatan" name="catatan" placeholder="Notes atau ucapan yang ingin disampaikan"></textarea>
+      <textarea id="catatan" name="catatan" placeholder="Saya datang bersama istri"></textarea>
     </div>
 
     <button type="submit" class="submit-btn" id="rsvpSubmitBtn">Kirim Konfirmasi</button>
