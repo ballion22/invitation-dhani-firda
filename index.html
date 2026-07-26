@@ -507,6 +507,76 @@
     background:var(--gold-pale);
   }
 
+  body.gate-locked{
+    overflow:hidden;
+    height:100vh;
+  }
+  .opening-gate{
+    position:fixed;
+    inset:0;
+    z-index:1000;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:32px;
+    background:var(--ivory);
+    background-image: url('assets/flower.jpg');
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-position:center;
+    transition:opacity .6s ease, visibility .6s ease;
+  }
+  .opening-gate.gate-hidden{
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+  }
+  .opening-panel{
+    background:rgba(250,246,238,.9);
+    border-radius:24px;
+    padding:40px 24px;
+    width:70%;
+    max-width:420px;
+    box-sizing:border-box;
+  }
+  .opening-couple{
+    font-size:clamp(30px,7vw,44px);
+    color:var(--ink);
+    margin-bottom:18px;
+  }
+  .opening-label{
+    font-size:13px;
+    color:var(--ink-soft);
+    margin-top:24px;
+  }
+  .opening-guest-name{
+    font-family:'DM Sans', sans-serif;
+    font-weight:700;
+    font-size:clamp(20px,4.5vw,26px);
+    color:var(--gold-deep);
+    margin-top:8px;
+    word-break:break-word;
+  }
+  .open-invite-btn{
+    margin-top:40px;
+    padding:14px 36px;
+    border:1px solid var(--gold-deep);
+    background:transparent;
+    color:var(--gold-deep);
+    font-family:'DM Sans', sans-serif;
+    font-size:13px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    cursor:pointer;
+    transition:background .2s ease, color .2s ease;
+  }
+  .open-invite-btn:hover{
+    background:var(--gold-deep);
+    color:var(--ivory);
+  }
+
   @media (prefers-reduced-motion: reduce){
     .scroll-cue{ animation:none; }
     section{ opacity:1; transform:none; transition:none; }
@@ -514,6 +584,19 @@
 </style>
 </head>
 <body>
+
+<!-- OPENING GATE -->
+<div id="openingGate" class="opening-gate">
+  <div class="opening-panel">
+    <div class="eyebrow">The Wedding Of</div>
+    <div class="couple-names serif" style="font-size:clamp(28px,7vw,44px);">
+      Dhani<br><span class="amp">&amp;</span>Firda
+    </div>
+    <div class="opening-label">Kepada Bapak/Ibu/Saudara/i</div>
+    <div class="opening-guest-name serif" id="guestName">Tamu Undangan</div>
+    <button id="openInvite" class="open-invite-btn">Buka Undangan</button>
+  </div>
+</div>
 
 <!-- BACKGROUND MUSIC -->
 <audio id="bgMusic" loop preload="auto">
@@ -575,7 +658,7 @@
     <div class="date-card-date">04 . 10 . 26</div>
     <div class="date-card-events">
       <div class="date-card-event">
-        <div class="event-name">Akad Nikah</div>
+        <div class="event-name">Akad<br>Nikah</div>
         <div class="event-time">07.00 &ndash; 09.30 WIB</div>
       </div>
       <div class="date-card-divider"></div>
@@ -597,7 +680,7 @@
 <!-- LOKASI -->
 <section id="lokasi">
   <div class="eyebrow">Lokasi Acara</div>
-  <h2 class="section-title serif">Taman Indie</h2>
+  <h2 class="section-title serif">Taman Indie Resto</h2>
   <div class="venue-block">
     Jalan Araya Megah No. 9, Pandanwangi,<br>
     Kecamatan Blimbing, Kota Malang
@@ -620,10 +703,10 @@
     <div class="eyebrow">Dresscode</div>
     <h2 class="section-title serif">Palet Warna</h2>
     <div class="swatches">
-      <div class="swatch" style="background:#8C9483;"></div>
-      <div class="swatch" style="background:#B76E79;"></div>
+      <div class="swatch" style="background:#7A9470;"></div>
+      <div class="swatch" style="background:#C97D8C;"></div>
       <div class="swatch" style="background:#C17A56;"></div>
-      <div class="swatch" style="background:#5C1F2E;"></div>
+      <div class="swatch" style="background:#7A2436;"></div>
     </div>
     <div class="dress-note">
       Meskipun tidak diwajibkan, kami akan sangat menghargai apabila Bapak/Ibu/Saudara/i berkenan mengenakan busana dengan nuansa warna berikut.
@@ -673,7 +756,7 @@
 
     <div class="field">
       <label for="catatan">Catatan (opsional)</label>
-      <textarea id="catatan" name="catatan" placeholder="Saya datang bersama keluarga"></textarea>
+      <textarea id="catatan" name="catatan" placeholder="Notes atau ucapan yang ingin disampaikan"></textarea>
     </div>
 
     <button type="submit" class="submit-btn">Kirim Konfirmasi</button>
@@ -723,9 +806,31 @@
 </section>
 
 
-<footer>SAVE THE DATE &nbsp;-----------------&nbsp; 04.10.2026</footer>
+<footer>SAVE THE DATE &nbsp;-----&nbsp; 04.10.2026</footer>
 
 <script>
+  // Opening gate: lock scroll until guest opens the invitation
+  document.body.classList.add('gate-locked');
+
+  // Read guest name from URL, e.g. index.html?to=Budi+Santoso
+  (function(){
+    var params = new URLSearchParams(window.location.search);
+    var guest = params.get('to') || params.get('nama');
+    if(guest){
+      document.getElementById('guestName').textContent = decodeURIComponent(guest.replace(/\+/g, ' '));
+    }
+  })();
+
+  document.getElementById('openInvite').addEventListener('click', function(){
+    var gate = document.getElementById('openingGate');
+    gate.classList.add('gate-hidden');
+    document.body.classList.remove('gate-locked');
+    startMusic();
+    setTimeout(function(){
+      gate.style.display = 'none';
+    }, 650);
+  });
+
   // Countdown to 04 Oktober 2026, 07:00 WIB (UTC+7)
   var target = new Date("2026-10-04T07:00:00+07:00").getTime();
 
